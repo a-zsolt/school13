@@ -1,0 +1,7 @@
+C:\Users\zsolt\OneDrive\Documents\Codes\school13\AMF\egyszeruCiklusok\egyszeruCiklusok\bin\Debug\egyszeruCiklusok.exe.config
+C:\Users\zsolt\OneDrive\Documents\Codes\school13\AMF\egyszeruCiklusok\egyszeruCiklusok\bin\Debug\egyszeruCiklusok.exe
+C:\Users\zsolt\OneDrive\Documents\Codes\school13\AMF\egyszeruCiklusok\egyszeruCiklusok\bin\Debug\egyszeruCiklusok.pdb
+C:\Users\zsolt\OneDrive\Documents\Codes\school13\AMF\egyszeruCiklusok\egyszeruCiklusok\obj\Debug\egyszeruCiklusok.csproj.AssemblyReference.cache
+C:\Users\zsolt\OneDrive\Documents\Codes\school13\AMF\egyszeruCiklusok\egyszeruCiklusok\obj\Debug\egyszeruCiklusok.csproj.CoreCompileInputs.cache
+C:\Users\zsolt\OneDrive\Documents\Codes\school13\AMF\egyszeruCiklusok\egyszeruCiklusok\obj\Debug\egyszeruCiklusok.exe
+C:\Users\zsolt\OneDrive\Documents\Codes\school13\AMF\egyszeruCiklusok\egyszeruCiklusok\obj\Debug\egyszeruCiklusok.pdb
