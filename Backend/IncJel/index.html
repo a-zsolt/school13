@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <title>IIEB</title>
+  </head>
+  <body class="d-flex justify-content-center">
+    <div>
+      <form method="POST" action="submit.php">
+        <h1 class="mb-lg-4">Iskolai incidens és eszközigény jelentő</h1>
+        <h5>Helyszín</h5>
+        <div class="d-flex justify-content-evenly">
+          <div class="d-flex flex-column">
+            <label for="epulet">Épület:</label>
+            <select class="form-control" name="epulet" id="epulet">
+              <option value="fo">Fő</option>
+              <option value="konyvtar">Könyvtár</option>
+              <option value="labor">Labor</option>
+            </select>
+          </div>
+          <div class="d-flex flex-column">
+            <label for="szint">Emelet:</label>
+            <input
+              class="form-control"
+              type="number"
+              name="szint"
+              id="szint"
+              min="-1"
+              max="4"
+              required
+            />
+          </div>
+          <div class="d-flex flex-column">
+            <label for="terem">Terem:</label>
+            <select class="form-control" name="terem" id="terem">
+              <option value="101">101</option>
+              <option value="102">102</option>
+              <option value="103">103</option>
+              <option value="201">201</option>
+              <option value="202">202</option>
+              <option value="203">203</option>
+              <option value="Könyvtár-1">Könyvtár-1</option>
+              <option value="Könyvtár-1">Könyvtár-2</option>
+              <option value="Labor-2">Labor-2</option>
+            </select>
+          </div>
+        </div>
+
+        <h5>Eszköz</h5>
+        <div
+          class="d-flex justify-content-evenly flex-md-column flex-wrap gap-2"
+        >
+          <div class="d-flex justify-content-evenly">
+            <div>
+              <label for="kat">Kategória:</label>
+              <select class="form-control" name="kat" id="kat">
+                <option value="pc">Számítógép</option>
+                <option value="monitor">Monitor</option>
+                <option value="projector">Projektor</option>
+                <option value="he">Hálózati eszköz</option>
+                <option value="nyom">Nyomtató</option>
+                <option value="perieria">Periféria</option>
+              </select>
+            </div>
+            <div>
+              <label for="eszkozT">Eszköztípus:</label>
+              <div class="">
+                <label for="pc">Asztali PC</label>
+                <input type="radio" name="eszkozT" id="PC" value="PC"/>
+                <label for="Laptop">Laptop</label>
+                <input type="radio" name="eszkozT" id="Laptop" value="Laptop" />
+                <label for="pc">Chromebook</label>
+                <input type="radio" name="eszkozT" id="Chromebook" value="Chromebook"/>
+                <label for="pc">Szerver</label>
+                <input type="radio" name="eszkozT" id="Szerver" value="Szerver"/>
+                <label for="pc">Egyéb</label>
+                <input type="radio" name="eszkozT" id="Egyeb" value="Egyeb"/>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-evenly">
+            <div>
+              <label for="leltariSz">Leltári szám: (10 szám)</label>
+              <input
+                class="form-control"
+                type="text"
+                name="leltariSz"
+                id="leltariSz"
+                placeholder="3254235436"
+                pattern="\d{10}"
+                required
+              />
+            </div>
+            <div>
+              <label for="pcN">Számítógép neve:</label>
+              <input class="form-control" type="text" name="pcN" id="pcN" required/>
+            </div>
+          </div>
+        </div>
+        <h5>Pozícó</h5>
+        <div class="d-flex justify-content-evenly">
+          <div>
+            <label for="sor">Sor: (ajtótol)</label>
+            <input
+              class="form-control"
+              type="number"
+              name="sor"
+              id="sor"
+              min="1"
+              max="20"
+              required
+            />
+          </div>
+          <div>
+            <label for="szék">Szék: (ajtótol)</label>
+            <input
+              class="form-control"
+              type="number"
+              name="szék"
+              id="szék"
+              min="1"
+              max="30"
+              required
+            />
+          </div>
+        </div>
+
+        <h5>Hiba részletei</h5>
+        <div class="d-flex flex-column justify-content-evenly">
+          <div>
+            <label for="hibaL">Hiba leírása:</label>
+            <textarea
+              class="form-control"
+              name="hibaL"
+              id="hibaL"
+              minlength="50"
+            ></textarea>
+          </div>
+          <div class="d-flex flex-column">
+            <label for="tunetek">Tünetek: </label>
+            <div
+              class="d-flex justify-content-center flex-md-row flex-wrap gap-2"
+            >
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="tunetek"
+                id="lassu"
+                value="lassu"
+              />
+              <label class="form-check-label" for="tunetek"
+                >Lassú rendszer</label
+              >
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="tunetek"
+                id="vUjra"
+                value="vUjra"
+              />
+              <label class="form-check-label" for="tunetek"
+                >Véletlenszerű újraindulás</label
+              >
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="tunetek"
+                id="fagyas"
+                value="fagyas"
+              />
+              <label class="form-check-label" for="tunetek">Fagyás</label>
+              <div class="w-100"></div>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="tunetek"
+                id="BSOD"
+                value="BSOD"
+              />
+              <label class="form-check-label" for="tunetek"
+                >Kék halál/BSOD</label
+              >
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="tunetek"
+                id="halozatSzak"
+                value="halozatSzak"
+              />
+              <label class="form-check-label" for="tunetek"
+                >Hálózati kapcsolat szakadozik</label
+              >
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="tunetek"
+                id="usbN"
+                value="usbN"
+              />
+              <label class="form-check-label" for="tunetek"
+                >Nem ismeri fel az USB-eszközt</label
+              >
+            </div>
+          </div>
+          <div>
+            <label for="felfI">Felfedezés ideje:</label>
+            <div class="d-flex">
+              <input class="form-control" type="datetime-local" name="felfI" id="felfI" required/>
+            </div>
+          </div>
+        </div>
+
+        <h5>Sürgősség</h5>
+        <div class="input-group">
+          <input id="priority" name="priority" class="form-range" type="range" step="1" min="1" max="5"/>
+          <span id="output" class="input-group-text">1</span>
+          <script>
+            const input = document.getElementById('priority')
+            const output = document.getElementById('output')
+
+            output.textContent = input.value
+
+            input.addEventListener('input', (event) => {
+              output.textContent = input.value
+            })
+          </script>
+        </div>
+        <h5>Kapcsolat</h5>
+        <div class="d-flex justify-content-evenly">
+          <div>
+            <label for="nev">Bejelentő neve</label>
+            <input class="form-control" type="text" name="nev" id="nev" required/>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input class="form-control" type="text" name="email" id="email" required/>
+          </div>
+          <div>
+            <label for="email">Telefonszám</label>
+            <input class="form-control" type="tel" name="tel" id="tel" placeholder="+36301234567" pattern="^\+36\d{8,12}$"/>
+          </div>
+        </div>
+
+        <h5>Egyebek</h5>
+        <div class="d-flex flex-column gap-3">
+            <div class="d-flex justify-content-evenly">
+                <div>
+                    <label for="csatolmany">Csatolmány:</label>
+                    <input class="form-control" type="file" name="file" id="file">
+                </div>
+                <div>
+                    <label for="szinKod">Színkód:</label>
+                    <input class="form-control" type="color" name="szinKod" id="szinKod">
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <label class="form-check-label" for="szinKod">Adatkezelési hozzájárulás:</label>
+                <input class="ms-2 form-check-input" type="checkbox" name="akH" id="akH" required>
+            </div>
+        </div>
+        <div class="mt-lg-4 d-flex justify-content-center">
+          <input class="btn btn-primary" type="submit" value="Bejelentés" />
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
