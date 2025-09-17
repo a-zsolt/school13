@@ -1,0 +1,7 @@
+C:\Users\zsolt\source\repos\suranyisz\suranyisz\bin\Debug\suranyisz.exe.config
+C:\Users\zsolt\source\repos\suranyisz\suranyisz\bin\Debug\suranyisz.exe
+C:\Users\zsolt\source\repos\suranyisz\suranyisz\bin\Debug\suranyisz.pdb
+C:\Users\zsolt\source\repos\suranyisz\suranyisz\obj\Debug\suranyisz.csproj.AssemblyReference.cache
+C:\Users\zsolt\source\repos\suranyisz\suranyisz\obj\Debug\suranyisz.csproj.CoreCompileInputs.cache
+C:\Users\zsolt\source\repos\suranyisz\suranyisz\obj\Debug\suranyisz.exe
+C:\Users\zsolt\source\repos\suranyisz\suranyisz\obj\Debug\suranyisz.pdb

@@ -1,0 +1,7 @@
+C:\Users\zsolt\source\repos\LNKO\LNKO\bin\Debug\LNKO.exe.config
+C:\Users\zsolt\source\repos\LNKO\LNKO\bin\Debug\LNKO.exe
+C:\Users\zsolt\source\repos\LNKO\LNKO\bin\Debug\LNKO.pdb
+C:\Users\zsolt\source\repos\LNKO\LNKO\obj\Debug\LNKO.csproj.AssemblyReference.cache
+C:\Users\zsolt\source\repos\LNKO\LNKO\obj\Debug\LNKO.csproj.CoreCompileInputs.cache
+C:\Users\zsolt\source\repos\LNKO\LNKO\obj\Debug\LNKO.exe
+C:\Users\zsolt\source\repos\LNKO\LNKO\obj\Debug\LNKO.pdb
