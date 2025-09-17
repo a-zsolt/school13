@@ -13,23 +13,25 @@
             <h1>Hőmérséklet megadás</h1>
         </div>
         <div class="container mt-3 vstack gap-3">
-            <div>
-                <label class="form-label" for="homerseklet">Hőmérséklet:</label>
-                <input class="form-control" type="text" name="homerseklet" id="homerseklet">
+            <div class="d-flex justify-content-center">
+                <div class="col-md-2 ">
+                    <label class="form-label" for="homerseklet">Hőmérséklet:</label>
+                    <input class="form-control <?=  $is_valid ? 'is-invalid': ''?>" type="text" name="homerseklet" id="homerseklet">
+                </div>
             </div>
             <div class="text-center">
                 <input class="btn btn-primary" type="submit" value="Beküldés">
             </div>
         </div>
         <?php 
-            $temp = $_POST['homerseklet'];
 
+        
             function checkFill($temp) {
                 if ($temp === "") {
-                    showAlert("Nincs megadva homerseklet!", true);
+                    showAlert("Nincs megadva homerseklet!", "danger");
                     return false;
-                } else if (!ctype_digit($temp)){
-                    showAlert("Csak számok lehetnek a mezőben!", true);
+                } else if (!is_numeric($temp)){
+                    showAlert("Csak számok lehetnek a mezőben!", "danger");
                     return false;
                 }
 
@@ -38,34 +40,39 @@
 
             function category($temp) {
                 if ($temp < 0) {
-                    echo showAlert("Fagyos", false);
+                    echo showAlert("Fagyos", "priamry");
                     return;
-                } else if($temp < 15) {
-                    echo showAlert("Hűvös", false);
+                } else if($temp <= 15) {
+                    echo showAlert("Hűvös", "info");
                     return;
-                } else if($temp < 25) {
-                    echo showAlert("Kellemes", false);
+                } else if($temp <= 25) {
+                    echo showAlert("Kellemes", "success");
                     return;
                 } else if($temp > 25) {
-                    echo showAlert("Meleg", false);
+                    echo showAlert("Meleg", "warning");
                     return;
                 }
             }
 
-            function showAlert($text, $error) {
-                if (!$error) {
-                    echo '<div class="container col-md-2 mt-3"><p class=" text-center p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">' . $text . '</p></div>';
-                } else {
-                    echo '<div class="container col-md-4 mt-3"><p class=" text-center p-3 text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3">' . $text . '</p></div>';
+            function showAlert($text, $color) {
+                if ($color === "danger") {
+                    echo '<div class="container col-sm-5 mt-3"><p class=" text-center p-3 text-'. $color .'-emphasis bg-'. $color .'-subtle border border-'. $color .'-subtle rounded-3">' . $text . '</p></div>';
+                }else {
+                    echo '<div class="container col-sm-3 mt-3"><p class=" text-center p-3 text-'. $color .'-emphasis bg-'. $color .'-subtle border border-'. $color .'-subtle rounded-3">' . $text . '</p></div>';
                 }
+
             }
 
-            if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            if($_SERVER["REQUEST_METHOD"] === "POST") {
+                $temp = $_POST['homerseklet'] ?? '';
                 if (checkFill($temp)) {
                     $temp = (double)$temp;
                     category($temp);
                 }                
             }
+
+
+
         ?>
     </form>
 </body>
