@@ -331,7 +331,7 @@ namespace egyszeruCiklusok
             //F25();
             //F26();
             //F27();
-            F28();
+            //F28();
             //F29();
             //F30();
             //31();
