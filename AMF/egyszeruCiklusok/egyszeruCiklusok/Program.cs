@@ -171,6 +171,133 @@ namespace egyszeruCiklusok
             Console.WriteLine("Az alma gyümölcs!");
         }
 
+        static void F25()
+        {
+            Console.Write("Kérek egy egész számot: ");
+            int num = Convert.ToInt32(Console.ReadLine());
+
+            int db = 0;
+            int num2 = num;
+            while (num2 > 3)
+            {
+                num2 = num2 - 3;
+                db++;
+            }
+
+            Console.WriteLine($"{num} = {db}*3+{num2}");
+        }
+
+        static void F26()
+        {
+            Console.Write("Kérek egy számot: ");
+            int num = Convert.ToInt32(Console.ReadLine());
+
+            if (num == 1)
+            {
+                Console.WriteLine("A megadott szám prím");
+            }
+
+            bool div = false;
+            int i = 2;
+            while (!div && i != num)
+            {
+                if (num % i == 0)
+                {
+                    div = true;
+                }
+
+                i++;
+            }
+
+            Console.WriteLine(div ? "A megadott szám nem prím." : "A megadott szám prím");
+        }
+
+        static void F27()
+        {
+            Console.Write("Kérek egy számot: ");
+            int num = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine();
+            for (int i = 2; i < num; i++)
+            {
+                int y = 2;
+                bool div = false;
+                while (!div && y < i)
+                {
+                    if (i % y == 0)
+                    {
+                        div = true;
+                    }
+                    y++;
+                }
+                
+                if (!div)
+                {
+                    Console.Write($"{i} ");
+                }
+            }
+        }
+
+        static void F28()
+        {
+            Console.Write("Kérek egy számot: ");
+            int num = Convert.ToInt32(Console.ReadLine());
+
+            for (int i = 2; i < num; i++)
+            {
+                if (num  % i == 0)
+                {
+                    int y = 2;
+                    bool div = false;
+                    while (!div && y < i)
+                    {
+                        if (i % y == 0)
+                        {
+                            div = true;
+                        }
+                        y++;
+                    }
+                    
+                    if (!div)
+                    {
+                        Console.Write($"{i} ");
+                    }
+                }
+            }
+        }
+
+        static void F29()
+        {
+            Console.Write("Kérek egy számot: ");
+            int num = Convert.ToInt32(Console.ReadLine());
+
+            for (int i = num - 1; i >= 0; i--)
+            {
+                
+            }
+        }
+
+        static void F30()
+        {
+            Console.Write("Kérem az első számot: ");
+            int num1 = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Kérem a második számot: ");
+            int num2 = Convert.ToInt32(Console.ReadLine());
+            
+            int r;
+
+            do
+            {
+                r = num1 % num2;
+                if (r != 0)
+                {
+                    num2 = r;
+                }
+            } while (r != 0);
+
+            Console.WriteLine(num2);
+        }
+
         static void F31 ()
         {
             Console.Write("Szám 1:");
@@ -204,10 +331,10 @@ namespace egyszeruCiklusok
             //F25();
             //F26();
             //F27();
-            //F28();
+            F28();
             //F29();
             //F30();
-            F31();
+            //31();
         }
     }
 }
