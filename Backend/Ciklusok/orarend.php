@@ -38,7 +38,16 @@ foreach ($timetable as $subs) {
             <td><?= $period + 1 ?></td>
             <?php foreach ($timetable as $day => $subjects): ?>
               <td>
-                <?= isset($subjects[$period]) ? htmlspecialchars($subjects[$period]) : "" ?>
+                <?php
+                  
+                  if ($subjects[$period] === "Backend") {
+                    $element = '<p class=" text-danger fw-bold mb-0">' . htmlspecialchars($subjects[$period]) . '</p>';
+                    echo isset($subjects[$period]) ? $element : "";
+                    
+                  } else {
+                    echo isset($subjects[$period]) ? htmlspecialchars($subjects[$period]) : "";
+                  }
+                ?>
               </td>
             <?php endforeach; ?>
           </tr>
