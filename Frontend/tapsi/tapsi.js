@@ -17,10 +17,10 @@ const fullumData = Array.from({ length: 20 }, (_, index) => {
 const form = document.querySelector("#filter");
 
 function showFilters() {
-	let filters = ["Kategória szűrés:", "Minimum érték:", "Maximum érték:"];
-	let type = ["select", "number", "number", "submit"];
+	let filters = ["Kategória szűrés:", "Sorrend:", "Minimum érték:", "Maximum érték:"];
+	let type = ["select", "select", "number", "number", "submit"];
 	let name = ["kat", "min", "max", ""];
-	let text = ["", "Pl. 1000", "Pl. 5000", "Szűrés alkalmazása"];
+	let text = ["", "", "Pl. 1000", "Pl. 5000", "Szűrés alkalmazása"];
 	let options = [
 		"összes",
 		"szegények pénze",
@@ -82,8 +82,18 @@ function showFilters() {
 	}
 }
 
+let shorted = {
+	by : "id",
+	type : "desc"
+} //aint gon happen rn
+function shortTable(data, sortBy) {	
+	let sortedList = [...data];
+
+	return sortedList.sort((a, b) => (a[sortBy] - b[sortBy]));
+}
+
 function filterData(data, filters) {
-	let filteredList = data;
+	let filteredList = [...data];
 
 	const minNum = filters.min === "" ? null : +filters.min;
 	const maxNum = filters.max === "" ? null : +filters.max;
@@ -96,37 +106,40 @@ function filterData(data, filters) {
 	if (filters.kat && filters.kat !== "összes")
 		tests.push((x) => x.category === filters.kat);
 
-	console.log(tests);
-	
-
 	filteredList = filteredList.filter((item) => tests.every((t) => t(item)));
 
+
+
 	fillTable(filteredList);
+}
 
-	// if (filters.min != "" && filters.max != "" && filters.kat != "összes") {
-	// 	for (let i = 0; i < filteredList.length; i++) {
-	// 		if (filteredList[i].value > filters.max || filteredList[i].value < filters.min || filteredList[i].category != filters.kat) {
-	// 			filteredList.splice(i, 1);
-	// 		}
-
+function maxKat(data) {
+	let valueKatSum = {
+		"szegények pénze" : 0,
+		"középoszály pénze" : 0,
+		"gazdagok pénze" : 0
+	}
+	
+	for (let i = 0; i < data.length; i++) {	
+		valueKatSum[data[i].category] += data[i].value;
+		
+	}
+	
+	//mine xdd
+	// let maxKat = 0;
+	// for (let i = 0; i < valueKatSum.length; i++) {
+	// 	console.log(valueKatSum[i]);
+		
+	// 	if (valueKatSum[i] > maxKat) {
+	// 		maxKat = valueKatSum[i]
 	// 	}
-	// } else if (filters.max != "" && filters.kat != "összes") {
-	// 	for (let i = 0; i < filteredList.length; i++) {
-	// 		if (filteredList[i].value > filters.max || filteredList[i].category != filters.kat) {
-	// 			filteredList.splice(i, 1);
-	// 		}
-
-	// 	}
-	// } else if (filters.min != "" && filters.kat != "összes") {
-	// 	for (let i = 0; i < filteredList.length; i++) {
-	// 		if (filteredList[i].value < filters.min || filteredList[i].category != filters.kat) {
-	// 			filteredList.splice(i, 1);
-	// 		}
-
-	// 	}
-	// } else if () {
-
 	// }
+
+	//duffka
+	const maxCategory = Object.keys(valueKatSum).reduce((a, b) => valueKatSum[a] > valueKatSum[b] ? a : b)
+
+	return maxCategory;
+	
 }
 
 function fillTable(data) {
@@ -156,6 +169,7 @@ function fillTable(data) {
 }
 
 showFilters();
+fillTable(fullumData);
 const formSubmit = document.querySelector("#submit");
 
 formSubmit.addEventListener("click", (e) => {
@@ -167,4 +181,22 @@ formSubmit.addEventListener("click", (e) => {
 	filterData(fullumData, filters);
 });
 
-fillTable(fullumData);
+const tableID = document.querySelector("#id");
+const tableValue = document.querySelector("#value");
+
+tableValue.addEventListener("click", (e) => {
+	fillTable(shortTable(fullumData,"value"))
+})
+
+tableID.addEventListener("click", (e) => {
+	fillTable(shortTable(fullumData, "id"))
+})
+
+console.log(`Leggazdagabb kategória: ${maxKat(fullumData)}`);
+
+
+
+
+
+
+
