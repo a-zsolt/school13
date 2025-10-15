@@ -64,8 +64,11 @@ taskInputs.forEach(input => {
     });
 });
 
-cardBtn.forEach(btn => {
-    btn.addEventListener('mousedown', () => {
+
+document.addEventListener('mousedown', (e) => {
+    if (e.target.classList.contains('cardBtn')) {
+        const btn = e.target;
+        
         switch (btn.textContent) {
             case 'star':
                 console.log('Star button clicked');
@@ -80,7 +83,7 @@ cardBtn.forEach(btn => {
                 deleteCard(btn);
                 break;
         }
-    });
+    }
 });
 
 function favoriteCard(btn) {
@@ -93,31 +96,40 @@ function favoriteCard(btn) {
 
 function moveCard(btn) {
     const dropdownItems = document.querySelectorAll('.dropdown-item');
-
     let card = btn.closest('.card');
 
     dropdownItems.forEach(item => {
-        item.addEventListener('click', () => {
-            console.log(item.value);
+        const newHandler = () => {
+            console.log(item.getAttribute('value'));
             
             card.remove();
-            document.querySelector(`#${item.value}`).appendChild(card);
-        });
-    })
+            document.querySelector(`#${item.getAttribute('value')}`).appendChild(card);
+        };
 
+        if (item._currentHandler) {
+            item.removeEventListener('click', item._currentHandler);
+        }
+
+        item.addEventListener('click', newHandler);
+        item._currentHandler = newHandler;
+    });
 }
 
 function deleteCard(btn) {
+    btn.classList.add('deleting');
+
     timeout = setTimeout(() => {
         btn.closest('.card').remove();
     }, 800);
                 
     btn.addEventListener('mouseup', () => {
         clearTimeout(timeout);
+        btn.classList.remove('deleting');
     });
 
     btn.addEventListener('mouseleave', () => {
         clearTimeout(timeout);
+        btn.classList.remove('deleting');
     });
 }
 
@@ -138,7 +150,7 @@ function checkFormValidity(input) {
 function createNewCard(data) {
 
     const card = document.createElement('div');
-    card.className = 'card mb-3';
+    card.className = 'card mb-1';
 
     card.innerHTML = `
     <div class="row g-0">
@@ -150,7 +162,12 @@ function createNewCard(data) {
                     <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
                     <div>
                         <button type="button" class="cardBtn material-symbols-rounded text-warning-emphasis btn pt-0 pb-0 ps-1 pe-1">star</button>
-                        <button type="button" class="cardBtn material-symbols-rounded text-info-emphasis btn pt-0 pb-0 ps-1 pe-1">move_group</button>
+                        <button type="button" class="cardBtn material-symbols-rounded text-info-emphasis btn pt-0 pb-0 ps-1 pe-1" data-bs-toggle="dropdown">move_group</button>
+                        <ul class="dropdown-menu">
+                            <li class="drp"><button class="dropdown-item btn" value="toDo">To Do</button></li>
+                            <li class="drp"><button class="dropdown-item btn" value="wrkingOn">Working On</button></li>
+                            <li class="drp"><button class="dropdown-item text-success btn" value="done">Done</button></li>
+                        </ul>
                         <button type="button" class="cardBtn material-symbols-rounded text-danger-emphasis btn pt-0 pb-0 ps-1 pe-1">delete</button>
                     </div>
                 </div>

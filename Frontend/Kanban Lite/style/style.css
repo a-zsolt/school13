@@ -1,0 +1,4 @@
+.cardBtn.deleting {
+    background-color: #58151cb4 !important;
+    transition: background-color 0.8s ease-in-out;
+}
