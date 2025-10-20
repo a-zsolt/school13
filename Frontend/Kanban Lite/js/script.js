@@ -1,13 +1,15 @@
 const newTaskBtn = document.querySelector('#newTaskBtn');
 const newTaskModal = document.querySelector('#newTaskModal');
 const form = document.querySelector('#newTaskForm');
-const taskInputs = document.querySelectorAll('.taskInputs');
-const cardBtn = document.querySelectorAll('.cardBtn');
 const taskListToDo = document.querySelector('#toDo');
 const taskListFavorites = document.querySelector('#favorites');
 const taskListWrkingOn = document.querySelector('#wrkingOn');
 const taskListDone = document.querySelector('#done');
 const modeSwitchBtn = document.querySelector('#modeSwitchBtn');
+
+const taskInputs = document.querySelectorAll('.taskInputs');
+const cardBtn = document.querySelectorAll('.cardBtn');
+const updateMins = document.querySelectorAll('.updateMin')
 
 defaultColorMode();
 
@@ -66,6 +68,13 @@ taskInputs.forEach(input => {
     });
 });
 
+modeSwitchBtn.addEventListener('click', () => {
+    if (document.body.getAttribute('data-bs-theme') === 'dark') {
+            changeModeTo('light');
+        } else {
+            changeModeTo('dark');
+    }
+});
 
 document.addEventListener('mousedown', (e) => {
     if (e.target.classList.contains('cardBtn')) {
@@ -82,14 +91,6 @@ document.addEventListener('mousedown', (e) => {
                 deleteCard(btn);
                 break;
         }
-    }
-});
-
-modeSwitchBtn.addEventListener('click', () => {
-    if (document.body.getAttribute('data-bs-theme') === 'dark') {
-            changeModeTo('light');
-        } else {
-            changeModeTo('dark');
     }
 });
 
@@ -255,7 +256,7 @@ function createNewCard(data) {
             <h5 class="card-title">${data.taskTitle}</h5>
             <p class="card-text">${data.taskDsc}</p>
             <div class="d-flex justify-content-between">
-                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                <p class="card-text"><small class="text-body-secondary">Last updated <span class="updateMin">1<</span> min ago</small></p>
                 <div>
                     <button type="button" aria-label="Favorite button for ${data.taskTitle}" aria-pressed="false" class="cardBtn material-symbols-rounded text-warning-emphasis btn pt-0 pb-0 ps-1 pe-1">star</button>
                     <button type="button" aria-label="Move dropdown for ${data.taskTitle}" class="cardBtn material-symbols-rounded text-info-emphasis btn pt-0 pb-0 ps-1 pe-1" data-bs-toggle="dropdown">move_group</button>
@@ -271,9 +272,18 @@ function createNewCard(data) {
     </div>
     `;
 
+    card.lastModifiedDate = new Date();
     taskListToDo.appendChild(card);
-    
 }
+
+function updateCardModifications(){
+    const currentTime = new Date();
+
+    updateMins.forEach(updateMin => {
+        updateMin.textContent = currentTime - updateMin.lastModifiedDate;
+    })
+}
+const modInterval = setInterval(updateCardModifications, 3000)
 
 /**
  * Changes the color mode
