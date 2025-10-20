@@ -255,7 +255,7 @@ function createNewCard(data) {
             <h5 class="card-title">${data.taskTitle}</h5>
             <p class="card-text">${data.taskDsc}</p>
             <div class="d-flex justify-content-between">
-                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                <p class="card-text"><small class="text-body-secondary">Last updated <span class="modifiedMin">3</span> mins ago</small></p>
                 <div>
                     <button type="button" aria-label="Favorite button for ${data.taskTitle}" aria-pressed="false" class="cardBtn material-symbols-rounded text-warning-emphasis btn pt-0 pb-0 ps-1 pe-1">star</button>
                     <button type="button" aria-label="Move dropdown for ${data.taskTitle}" class="cardBtn material-symbols-rounded text-info-emphasis btn pt-0 pb-0 ps-1 pe-1" data-bs-toggle="dropdown">move_group</button>
@@ -271,9 +271,31 @@ function createNewCard(data) {
     </div>
     `;
 
+    card.querySelector('.modifiedMin').dataset.lastModified = new Date(); //.toISOString()
     taskListToDo.appendChild(card);
     
 }
+
+function updateLastModified(){
+    const modifiedMins = document.querySelectorAll('.modifiedMin');
+    console.log(modifiedMins);
+    
+    let currentTime = new Date();
+
+    modifiedMins.forEach(modifiedMin => {
+        const lastModified = new Date(modifiedMin.dataset.lastModified);
+        const diffInMs = currentTime - lastModified;
+        const diffInMinutes = Math.floor(diffInMs / 60000);
+        if (diffInMinutes < 1) {
+            modifiedMin.textContent = '1<';
+            
+        } else {
+            modifiedMin.textContent = diffInMinutes;
+        }
+    })
+}
+setInterval(updateLastModified, 30000)
+
 
 /**
  * Changes the color mode
@@ -313,3 +335,4 @@ let exampleCardData = {
 };
 
 createNewCard(exampleCardData);
+updateLastModified();
