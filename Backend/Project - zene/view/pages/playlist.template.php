@@ -1,3 +1,4 @@
+<?php echo generateFilters($all_tracks, $filter_genre, $filter_decade); ?>
 <table class="table">
     <thead>
         <tr>

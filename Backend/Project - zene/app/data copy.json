@@ -1,0 +1,76 @@
+{
+    "tracks": [
+        {
+            "id" : 1,
+            "title" : "Bohemian Rhapsody",
+            "performer" : "Queen",
+            "album" : "A Night at the Opera",
+            "length" : 354,
+            "genre" : "rock",
+            "year" : 1975
+        },
+        {
+            "id" : 2,
+            "title" : "Billie Jean",
+            "performer" : "Michael Jackson",
+            "album" : "Thriller",
+            "length" : 294,
+            "genre" : "pop",
+            "year" : 1982
+        },
+        {
+            "id" : 3,
+            "title" : "Hustla's Story",
+            "performer" : "Cozz, Kendirck Lamar",
+            "album" : "Effected",
+            "length" : 257,
+            "genre" : "rap",
+            "year" : 2018
+        },
+        {
+            "id" : 4,
+            "title" : "Count Me Out",
+            "performer" : "Kendrick Lamar",
+            "album" : "Mr. Morale & The Big Steppers",
+            "length" : 267,
+            "genre" : "rap",
+            "year" : 2022
+        },
+        {
+            "id" : 5,
+            "title" : "Mr Wrong",
+            "performer" : "Sade",
+            "album" : "Promise",
+            "length" : 151,
+            "genre" : "soul/jazz",
+            "year" : 1985
+        },
+        {
+            "id" : 6,
+            "title" : "Dreams",
+            "performer" : "Fleetwood Mac",
+            "album" : "Rumours",
+            "length" : 254,
+            "genre" : "soft Rock, r&b/soul",
+            "year" : 1977
+        },
+        {
+            "id" : 7,
+            "title" : "Forbidden Fruit",
+            "performer" : "J.Cole, Kendrick Lamar",
+            "album" : "Born Sinner",
+            "length" : 257,
+            "genre" : "rap",
+            "year" : 2013
+        },
+        {
+            "id" : 8,
+            "title" : "Sk8",
+            "performer" : "JID, Ciara, EARTHGANG",
+            "album" : "God Does Like Ugly",
+            "length" : 186,
+            "genre" : "rap",
+            "year" : 2025
+        }
+    ]
+}

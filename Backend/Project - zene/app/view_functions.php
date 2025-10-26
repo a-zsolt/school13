@@ -34,12 +34,80 @@ function generateNavBar($pages, $active_page): string {
     return $nav;
 }
 
+function generateFilters($tracks, $filter_genre, $filter_decade): string {
+    $form = '
+        <form class="row" method="GET">
+            <div class="col-5">
+                <div class="input-group">
+                    <label class="input-group-text" for="reporterName">Előadó:</label>
+                    <input type="hidden" value="playlist" name="page" id="page">
+                    <select class="form-select" id="genre" name="genre">
+                        
+                    
+    ';
+
+    if ($filter_genre === null) {
+        $form .= '<option selected value="null">összes</option>';
+    } else {
+        $form .= '<option value="null">összes</option>';
+    }
+    
+    $genres = [];
+    foreach($tracks as $track) {
+        if (!in_array($track['genre'], $genres)) {
+            array_push($genres, $track['genre']);
+            if ($track['genre'] === $filter_genre) {
+                $form .= '<option selected>'. $track['genre'] .'</option>';
+            } else {
+                $form .= '<option>'. $track['genre'] .'</option>';
+            }
+        }
+    }
+
+    $form .= '
+        </select>
+        <label class="input-group-text" for="reporterName">Évtized:</label>
+        <select class="form-select" id="decade" name="decade">
+
+    ';
+
+    if ($filter_decade === null) {
+        $form .= '<option selected value="null">összes</option>';
+    } else {
+        $form .= '<option value="null">összes</option>';
+    }
+    
+    $decades = [];
+    foreach($tracks as $track) {
+        $trackDecade = substr($track["year"], 0, -1) . 0;
+
+        if (!in_array($trackDecade, $decades)) {
+            array_push($decades, $trackDecade);
+            if ($trackDecade === $filter_decade) {
+                $form .= '<option selected>'. $trackDecade .'</option>';
+            } else {
+                $form .= '<option>'. $trackDecade .'</option>';
+            }
+        }
+    }
+
+    $form .= '
+                    </select>
+                    <input class="btn btn-primary" type="submit" value="Szűrés">
+                </div>
+            </div>
+        </form>
+    ';
+
+    return $form;
+}
+
 function render_track_row(array $track): string {
     $row = '<tr>';
 
     foreach($track as $track_key => $track_value) {
         switch($track_key){
-            case 'lenght':
+            case 'length':
                 $row .= '<td>'. format_duration($track_value) .'</td>';
                 break;
             case 'genre':
@@ -58,13 +126,24 @@ function render_track_row(array $track): string {
 }
 
 function format_duration(string $seconds): string{
-    $mins = $seconds;
+    $minutes = floor($seconds / 60);
+    $seconds = $seconds % 60;
 
-    return $mins;
+    return sprintf('%d:%02d', $minutes, $seconds);;
 }
 
 function format_genre(string $genre): string{
     $formated = '<span class="badge text-bg-primary">'. $genre .'</span>';
 
     return $formated;
+}
+
+function get_total_playlist_duration($tracks): int{
+    $totalDuartion = 0;
+    
+    foreach ($tracks as $track){
+        $totalDuartion += $track["length"];
+    }
+
+    return $totalDuartion;
 }

@@ -20,43 +20,58 @@ $page_map = [
 
 //$page = isset($_GET['page']) ? $_GET['page'] : 'home';
 $page = $_GET['page'] ?? 'home';
+$all_tracks = get_all_tracks(__DIR__ . '/app/data.json');
 $tracks = get_all_tracks(__DIR__ . '/app/data.json');
 
 
-include 'view/partials/header.template.php';
 
 switch ($page) {
     case 'playlist':
         $filter_genre = $_GET["genre"] ?? null;
         $filter_decade = $_GET["decade"] ?? null;
         $page_title = "Összes Zene";
-        if ($filter_genre) {
+        include 'view/partials/header.template.php';
+        if (empty($filter_genre) || $filter_genre === 'null') {
+            $filter_genre = null;
+        }
+        if (empty($filter_decade) || $filter_decade === 'null') {
+            $filter_decade = null;
+        }
+        
+        if ($filter_genre !== null && $filter_decade !== null) {
             $tracks = filter_tracks_by_genre($filter_genre, $tracks);
-            $page = "Zenék - " . $filter_genre;
-        } else if ($filter_decade) {
             $tracks = filter_tracks_by_decade($filter_decade, $tracks);
-            $page = "Zenék - " . $filter_decade;
-        } else if ($filter_genre && $filter_decade){
+            $page_title = "Zenék - " . $filter_genre . " & " . $filter_decade;
+        } elseif ($filter_genre !== null) {
             $tracks = filter_tracks_by_genre($filter_genre, $tracks);
+            $page_title = "Zenék - " . $filter_genre;
+        } elseif ($filter_decade !== null) {
             $tracks = filter_tracks_by_decade($filter_decade, $tracks);
-            $page = "Zenék - " . $filter_genre . "&" . $filter_decade;
-        };
+            $page_title = "Zenék - " . $filter_decade;
+        }
 
         include 'view/pages/playlist.template.php';
         break;
     case 'add':
         $page_title = "Zene hozzáadás";
+        include 'view/partials/header.template.php';
         $submitted = false;
+        $error = false;
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $page_title = "Zene hozzáadás - Beküldve";
-            $submitted = true;
-            $result = $_POST;
+            $submitted = check_inputs();
+            
+            if ($submitted) {
+                save_new_track($all_tracks, $_POST);
+            }
+            var_dump($result);
         }
         include 'view/pages/add_track.template.php';
         break;
     case 'home':
     default:
         $page_title = "Főoldal";
+        include 'view/partials/header.template.php';
         include 'view/pages/home.template.php';
         break;
 }

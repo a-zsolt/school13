@@ -35,6 +35,20 @@ class Program
         }
     }
 
+    static void fileMaker(string fileName, int fileRows, int minNum, int maxNum)
+    {
+        List<string> numbers = new List<string>();
+
+        Random rnd = new Random();
+
+        for (int i = 0; i < fileRows; i++)
+        {
+            numbers.Add(rnd.Next(minNum, maxNum).ToString());
+        }
+
+        File.WriteAllLines(fileName, numbers);
+    }
+
     static void selectTask()
     {
         try
@@ -50,6 +64,23 @@ class Program
             Console.WriteLine(e);
             throw;
         }
+    }
+
+    static bool isPrime (int num)
+    {
+        bool div = false;
+        int numToCheck = 2;
+        do
+        {
+            if (num % numToCheck == 0)
+            {
+                div = true;
+            }
+            numToCheck++;
+        }
+        while (numToCheck < num - 1 && !div);
+
+        return div;
     }
 
     static void F32()
@@ -93,20 +124,6 @@ class Program
         
     }
 
-    static void F34()
-    {
-    }
-    
-    static void F42()
-    {
-        int[]
-        
-        for (int i = 0; i < 5; i++)
-        {
-            
-        }
-    }
-
     static void F35()
     {   
         string chars = "abcdefghijklmnopqrstuvwxyz";
@@ -146,6 +163,90 @@ class Program
                 
             }
         }
+    }
+
+    static void F70()
+    {
+        fileMaker("forras70.be", 300, 1, 500);
+
+        List<int> numbers = new List<int>();
+        string[] fileRead = File.ReadAllLines("forras70.be");
+
+
+        foreach (string num in fileRead)
+        {
+            numbers.Add(Convert.ToInt32(num));
+        }
+
+        Console.WriteLine($"Számok összege: {numbers.Sum()}, Számok átlaga: {numbers.Sum() / numbers.Count()}");
+
+
+        int primes = 0;
+        foreach (int num in numbers)
+        {
+            if (isPrime(num))
+            {
+                primes++;
+            }
+        }
+
+        Console.WriteLine($"Pímszámok darabja: {primes}");
+
+        int smallestPrime = 999999999;
+        int smallestPrimeIndex = 0;
+        for (int i = 0; i < numbers.Count - 1; i++)
+        {
+            if (isPrime(numbers[i]))
+            {
+                if (numbers[i] < smallestPrime)
+                {
+                    smallestPrime = numbers[i];
+                    smallestPrimeIndex = i;
+                }
+            }
+        }
+
+        List<int> evenNums = new List<int>();
+        for (int i = 0; i < smallestPrimeIndex; i++)
+        {
+            if (i % 2 == 0)
+            {
+                evenNums.Add(numbers[i]);
+            }
+        }
+
+        Console.WriteLine($"A legkissebb prím előtti páros számok átlaga: {evenNums.Sum() / evenNums.Count()}");
+
+        
+        for (int i = 0; i < numbers.Count; i++)
+        {
+            if (isPrime(numbers[i]))
+            {
+                
+            }
+        }
+        
+        int y = 0;
+        List<int> firstAndSecPrimeIndex = new List<int>();
+        do
+        {
+            if (isPrime(numbers[y]))
+            {
+                firstAndSecPrimeIndex.Add(y);
+            }
+            y++;
+        }
+        while (y < numbers.Count && firstAndSecPrimeIndex.Count < 2);
+
+        List<int> betweenFirstAndSec = new List<int>();
+        for (int i = firstAndSecPrimeIndex[0]; i < firstAndSecPrimeIndex[1]; i++)
+        {
+            betweenFirstAndSec.Add(numbers[i]);
+        }
+
+        Console.WriteLine($"Első és a második prímszám között található számok összege: {betweenFirstAndSec.Sum()}");
+
+
     }
     
     static void Main(string[] args)
