@@ -1,15 +1,16 @@
 ﻿using System.Text;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace EgymasbaAgyazottCiklusok;
 
 class Program
 {
-    static int inputInt()
+    static int inputInt(string msg = "Szám")
     {
         try
         {
-            Console.Write("Szám: ");
+            Console.Write($"{msg}:");
             int number = Convert.ToInt32(Console.ReadLine());
             return number;
         }
@@ -20,13 +21,13 @@ class Program
         }
     }
     
-    static int inputString()
+    static string inputString(string msg = "Szöveg")
     {
         try
         {
-            Console.Write("Szöveg:");
-            int number = Convert.ToInt32(Console.ReadLine());
-            return number;
+            Console.Write($"{msg}:");
+            string text = Console.ReadLine();
+            return text;
         }
         catch
         {
@@ -49,14 +50,28 @@ class Program
         File.WriteAllLines(fileName, numbers);
     }
 
+    static List<int> readNumsInList(string fileName) 
+    {
+        List<int> numbers = new List<int>();
+        string[] fileRead = File.ReadAllLines(fileName);
+
+
+        foreach (string num in fileRead)
+        {
+            numbers.Add(Convert.ToInt32(num));
+        }
+
+        return numbers;
+    }
+
     static void selectTask()
     {
         try
         {
-            Console.Write("Task number to run:");
+            Console.Write("Feladat száma:");
             string funcToRun = Console.ReadLine();
             var type = typeof(Program);
-            var mi = type.GetMethod(funcToRun!, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
+            var mi = type.GetMethod($"F{funcToRun}"!, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
             mi.Invoke(null, null);
         }
         catch (Exception e)
@@ -163,6 +178,131 @@ class Program
                 
             }
         }
+    }
+
+    static void F38()
+    {
+        int height = inputInt("Magasság");
+
+        for (int i = 1; i <= height; i++)
+        {
+            for (int j = 0; j <= height - i; j++)
+            {
+                Console.Write(" ");
+            }
+            for (int j = 0; j < i * 2 - 1; j++)
+            {
+                Console.Write("*");
+            }
+            Console.WriteLine();
+        }
+    }
+
+    static void F39()
+    {
+        int height = inputInt("Magasság");
+        int width = inputInt("Szélesség");
+
+        string[,] matrix = new string[height, width];
+
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            matrix[0, j] = "*";
+            matrix[matrix.GetLength(0) - 1, j] = "*";
+        }
+
+        for (int i = 0; i < matrix.GetLength(0); i++)
+        {
+            matrix[i, 0] = "*";
+            matrix[i, matrix.GetLength(1) - 1] = "*";
+        }
+
+        for (int i = 0; i < matrix.GetLength(0); i++)
+        {
+            for (int j = 0; j < matrix.GetLength(1); j++)
+            {
+                if (matrix[i, j] == null)
+                {
+                    Console.Write(" ");
+                } else
+                {
+                    Console.Write(matrix[i, j]);
+                }
+            }
+            Console.WriteLine();
+        }
+    }
+
+    static void F41()
+    {
+        string chars = "abcdefghijklmnopqrstuvwxyz".ToUpper();
+
+        for (int i = 0; i < 27; i++)
+        {
+            Console.WriteLine(chars);
+            char moving = chars[0];
+            chars = chars.Substring(1) + moving;
+        }
+    }
+
+    static void F49()
+    {
+        List<int> numbers = new List<int>();
+
+        int times = inputInt("Mennyi szám legyen a tömben");
+
+        for (int i = 0; i < times; i++)
+        {
+            numbers.Add(inputInt($"{i + 1}. Szám"));
+        }
+
+        for (int i = 0; i < numbers.Count - 1; i++)
+        {
+            for (int j = 0; j < numbers.Count - i - 1; j++)
+            {
+                if (numbers[j] > numbers[j + 1])
+                {
+                    int temp = numbers[j];
+                    numbers[j] = numbers[j + 1];
+                    numbers[j + 1] = temp;
+                }
+            }
+        }
+
+        foreach (var item in numbers)
+        {
+            Console.WriteLine(item);
+        }
+    }
+
+    static void F57 ()
+    {
+        string[] mondat = inputString().Split(' ');
+
+        foreach (var szo in mondat)
+        {
+            Console.WriteLine(szo[0].ToString().ToUpper() + szo.Substring(1));
+        }
+
+
+    }
+
+    static void F67()
+    {
+        fileMaker("forras67.be", 50, 0, 500);
+        List<int> numbers = new List<int>(readNumsInList("forras67.be"));
+
+        int evenSum = 0;
+        foreach (int number in numbers)
+        {
+            if (number % 2 == 0)
+            {
+                evenSum += number;
+            }
+        }
+
+        Console.WriteLine($"A páros számok összege: {evenSum}");
+
     }
 
     static void F70()

@@ -6,9 +6,10 @@ import './style.css'
 import { renderProducts } from './ui/renderProducts.js'
 import { getProducts } from './api/productsApi.js'
 import renderNav from './ui/renderNav.js'
+import { renderCart } from './ui/renderCart.js'
 
 async function main() {
-    renderNav()
+    renderCart(renderNav())
     const products = await getProducts()
     renderProducts(products)
 }
