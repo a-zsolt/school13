@@ -1,5 +1,5 @@
 let mockData = [
-  { "id": "p1",  "name": "Kék bögre",           "price": 1490, "image": "mug-blue.jpg",        "stock": 24 },
+  { "id": "p1",  "name": "Kék bögre",           "price": 1490, "image": "https://m.media-amazon.com/images/I/51OIsstG+6L._AC_UF894,1000_QL80_.jpg",        "stock": 24 },
   { "id": "p2",  "name": "Piros póló",          "price": 3990, "image": "shirt-red.jpg",       "stock": 15 },
   { "id": "p3",  "name": "Notebook matrica",    "price": 690,  "image": "sticker-notebook.jpg","stock": 120 },
   { "id": "p4",  "name": "Fehér bögre",         "price": 1490, "image": "mug-white.jpg",       "stock": 30 },
@@ -13,7 +13,7 @@ let mockData = [
 
 export function getProducts() {
   try{
-    let data = await(mockData);
+    let data = mockData;
 
     return !Array.isArray(data) ? [] : data;
   } catch(error) {
