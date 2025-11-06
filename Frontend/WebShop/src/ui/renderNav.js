@@ -1,6 +1,6 @@
 export default function renderNav() {
     let nav = document.createElement('nav');
-    nav.className = "navbar navbar-expand-lg navbar-light bg-light shadow-sm mb-4";
+    nav.className = "navbar navbar-expand-lg shadow-sm mb-4";
 
     nav.innerHTML = `
             <div class="container-fluid ps-3 pe-3">
@@ -11,8 +11,8 @@ export default function renderNav() {
                 <button type="button" class="btn btn-primary position-relative m-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                     <i class="bi bi-bag"></i>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        3
-                        <span class="visually-hidden">unread messages</span>
+                        0
+                        <span class="visually-hidden">items in cart</span>
                     </span>
                 </button>
             </div>
@@ -20,5 +20,13 @@ export default function renderNav() {
 
     document.body.append(nav);
     return nav;
+}
 
+export function updateCartBadge(count = 0) {
+  const nav = document.querySelector('nav.navbar');
+  if (!nav) return;
+
+  const badge = nav.querySelector('span.badge');
+
+  badge.textContent = count;
 }

@@ -6,12 +6,14 @@ import './style.css'
 import { renderProducts } from './ui/renderProducts.js'
 import { getProducts } from './api/productsApi.js'
 import renderNav from './ui/renderNav.js'
-import { renderCart } from './ui/renderCart.js'
+import * as renderCart from './ui/renderCart.js'
+import * as cartService from './cart/cartService.js';
 
-async function main() {
-    renderCart(renderNav())
+async function init() {
+    renderCart.init(renderNav())
+    renderCart.updateCartUI(cartService.getSavedCart())
     const products = await getProducts()
     renderProducts(products)
 }
 
-main()
+init()
