@@ -180,6 +180,39 @@ class Program
         }
     }
 
+    static void F36()
+    {
+        for (int i = 1; i < 51; i++)
+        {
+            if (i % 2 == 0)
+            {
+                Console.Write('O');
+            } else 
+            { 
+                Console.Write('X');            
+            }
+
+            if (i % 5 == 0)
+            {
+                Console.WriteLine();
+            }
+        }
+    }
+
+    static void F37()
+    {
+        int height = inputInt("Magasság");
+
+        for (int i = 1; i <= height; i++)
+        {
+            for (int j = 0; j < i * 2 - 1; j++)
+            {
+                Console.Write("*");
+            }
+            Console.WriteLine();
+        }
+    }
+
     static void F38()
     {
         int height = inputInt("Magasság");
