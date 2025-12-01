@@ -1,0 +1,52 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #b7a48e;
+}
+
+.bg-sidebar {
+    background: #e2c7a5;
+}
+
+.cv-name {
+    font-size: 2rem;
+    letter-spacing: .12rem;
+}
+
+.cv-position {
+    font-size: .9rem;
+    text-transform: uppercase;
+}
+
+.cv-photo img {
+    max-width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.cv-section-title {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: .8rem;
+    position: relative;
+    padding-bottom: .4rem;
+}
+
+.cv-section-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 2px;
+    background: #000;
+}
+
+.cv-experience-desc {
+    font-size: .9rem;
+}
+
+.cv-sum {
+    font-size: .9rem;
+}
