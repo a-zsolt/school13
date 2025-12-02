@@ -14,9 +14,15 @@ class contactController extends Controller
         $name = $request->name;
         $email = $request->email;
 
-        return view('pages.contactStore', [
-            'name' => $name,
-            'email' => $email
-        ]);
+        return redirect()
+            ->route('page.contact')
+            ->with([
+                'status' => "Köszönjuk a regisztrációdat. ($name, $email)",
+            ]);
+
+//        return view('pages.contactStore', [
+//            'name' => $name,
+//            'email' => $email
+//        ]);
     }
 }

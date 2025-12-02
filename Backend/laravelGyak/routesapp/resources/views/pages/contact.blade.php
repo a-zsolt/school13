@@ -1,16 +1,23 @@
-@include('components.menu')
+@extends('layouts.app')
+
+@section('page_title', 'LaraHello - Contact')
+
+@section('content')
+    <h1>Contact</h1>
 
 <form method="post" action="/contact">
     @csrf
-    <label>
+    <label class="form-label">
         Név:
-        <input type="text" name="name" required>
+        <input class="form-control" type="text" name="name" required>
     </label>
 
-    <lable>
+    <label class="form-label">
         Email:
-        <input type="email" name="email" required>
-    </lable>
+        <input class="form-control" type="email" name="email" required>
+    </label>
 
-    <input type="submit" value="Beküldés">
+    <input class="btn btn-primary" type="submit" value="Beküldés">
 </form>
+
+@endsection
