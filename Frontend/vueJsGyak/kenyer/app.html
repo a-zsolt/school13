@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kovász Nyilvántartó</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+<main id="app">
+    <section>
+        <h1>Kovász Nyilvántartó</h1>
+
+        <h2>Új Kovász</h2>
+        <form v-on:submit.prevent="addNewStarter">
+            <input type="text" v-model="newName" placeholder="Név" required>
+
+            <select v-model="newType">
+                <option value="búza">Búza</option>
+                <option value="rozs">Rozs</option>
+            </select>
+
+            <input type="text" v-model="newRatio" placeholder="Arány (pl. 1:1)" required>
+
+            <input type="date" v-model="newStartDate" required>
+
+            <input type="submit" value="Hozzáadás">
+        </form>
+        <hr>
+    </section>
+
+    <section>
+        <h2>Kovászaim</h2>
+        <div v-for="starter in starters" :key="starter.id" class="starter-card">
+            <h3>{{ starter.name }} ({{ starter.type }})</h3>
+            <p>Arány: {{ starter.ratio }}</p>
+            <p>Kezdés: {{ starter.startDate }}</p>
+            <p>Etetések száma: {{ starter.feedings.length }}</p>
+
+            <button @click="addFeeding(starter)">Etetés Most</button>
+
+            <div v-if="starter.feedings.length > 0" class="feedings">
+                <strong>Utolsó etetés:</strong>
+                {{ starter.feedings[starter.feedings.length - 1].date }}
+                {{ starter.feedings[starter.feedings.length - 1].time }}
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>

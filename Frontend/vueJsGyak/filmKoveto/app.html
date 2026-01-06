@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sorozat Követő</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+<main id="app">
+    <section>
+        <h1>Sorozat/Film Követő</h1>
+        <input type="text" v-model="searchTerm" placeholder="Keresés cím alapján..." class="search-input">
+        <form v-on:submit.prevent="addNewItem">
+            <input type="text" v-model="newTitle" placeholder="Cím" required>
+            <select v-model="newType">
+                <option value="movie">Film</option>
+                <option value="series">Sorozat</option>
+            </select>
+            <input v-if="newType === 'series'" v-model.number="newTotalEpisodes" type="number" placeholder="Össz. rész" min="1">
+            <input type="submit" value="Hozzáadás">
+        </form>
+        <br>
+    </section>
+    <section v-for="item in filteredItems" :key="item.id" class="items">
+        <strong>{{item.title}}</strong> - <em>{{item.type === 'movie' ? 'Film' : 'Sorozat'}}</em>
+        <div v-if="item.type === 'movie'">
+            <label><input type="checkbox" v-model="item.watched"><span v-if="item.watched" class="watched-label">Megnézve</span></label>
+        </div>
+        <div v-else>
+            <label>Epizód
+                <input type="number"
+                       :disabled="item.currentEpisode === item.totalEpisodes"
+                       v-model.number="item.currentEpisode" min="0"
+                       :max="item.totalEpisodes"> / {{item.totalEpisodes}}
+            </label>
+            <span class="watched-label" v-if="item.currentEpisode === item.totalEpisodes">Megnézve</span>
+            <span v-if="item.currentEpisode > item.totalEpisodes"> Hiba nem lehet nagyobb a megnezett ep száma</span>
+        </div>
+    </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,107 @@
+============================================================
+1) Program mentése
+------------------------------------------------------------
+A forráskódot elmentette egyszamjatek néven .......... 0 / 1
+A programkód szintaktikailag hibátlan, lefordítható ... 1 / 1
+
+Részösszeg (1): 1 / 2
+
+============================================================
+2) Kiírások
+------------------------------------------------------------
+Legalább 2 kiírásnál feladatsorszám + minta szerint ... 1 / 1
+Legalább 4 kiírásnál feladatsorszám + minta szerint ... 1 / 1
+Minden kiírásnál feladatsorszám + minta szerint ...... 1 / 1
+
+Részösszeg (2): 3 / 3
+
+============================================================
+3) egyszamjatek.txt beolvasás, tárolás
+------------------------------------------------------------
+Legalább 1 sort beolvasott ........................... 1 / 1
+Beolvasta az összes sort ............................. 1 / 1
+Az összes adat eltárolva megfelelő adatszerkezetben ... 1 / 1
+(Megjegyzés: a 3 pont akkor is járhat, ha nem tárolta, de helyesen kezeli.)
+
+Részösszeg (3): 3 / 3
+
+============================================================
+4) Játékosok száma
+------------------------------------------------------------
+Helyesen határozta meg a játékosok számát ............ 1 / 1
+Kiírta a képernyőre a játékosok számát ............... 1 / 1
+
+Részösszeg (4): 2 / 2
+
+============================================================
+5) Fordulók száma
+------------------------------------------------------------
+Helyesen határozta meg a fordulók számát ............. 1 / 1
+Kiírta a képernyőre a fordulók számát ................ 1 / 1
+
+Részösszeg (5): 2 / 2
+
+============================================================
+6) Egyes tipp az első fordulóban
+------------------------------------------------------------
+Legalább 1 játékos esetén az 1. fordulót vizsgálta .... 1 / 1
+A feltétel helyes a játékos tippjére .................. 1 / 1
+Helyesen eldönti, volt-e 1-es tipp .................... 1 / 1
+Kiírta az eldöntés eredményét .......................... 1 / 1
+
+Részösszeg (6): 4 / 4
+
+============================================================
+7) Legnagyobb tipp a fordulók során
+------------------------------------------------------------
+Legalább 1 játékos vagy 1 forduló tippjeit vizsgálta .. 1 / 1
+Az összes játékos vagy forduló tippjeit vizsgálta ..... 1 / 1
+Helyesen határozta meg a legnagyobb tippet ............ 1 / 1
+Kiírta a képernyőre a legnagyobb tippet ............... 1 / 1
+
+Részösszeg (7): 4 / 4
+
+============================================================
+8) Forduló sorszámának bekérése
+------------------------------------------------------------
+A bekérésben helyesen kiírta az intervallumot ......... 1 / 1
+Bekérte és eltárolta a forduló sorszámát .............. 1 / 1
+1-re állítja, ha < 1 .................................. 1 / 1
+1-re állítja, ha > fordulók száma ..................... 1 / 1
+
+Részösszeg (8): 4 / 4
+
+============================================================
+9) Nyertes tipp a fordulóban
+------------------------------------------------------------
+Legalább 1 játékos adott fordulóbeli tippjét vizsgálta  1 / 1
+A megadott forduló összes tippjét vizsgálta ........... 1 / 1
+Legalább 1 számról eldöntötte, egyedi tipp volt-e ...... 1 / 1
+Az egyedi tippek közül a legkisebbet választotta ....... 1 / 1
+Helyesen határozza meg a nyertes tippet (ha van) ....... 1 / 1
+Kiírta a nyertes tipp értékét .......................... 1 / 1
+Kiírta, ha nem volt nyertes tipp ....................... 1 / 1
+
+Részösszeg (9): 7 / 7
+
+============================================================
+10) A megadott forduló nyertese
+------------------------------------------------------------
+Helyesen meghatározza a nyertes nevét (ha van) ......... 2 / 2
+Kiírta a nyertes játékos nevét .......................... 1 / 1
+Kiírta, ha nem volt nyertes játékos ..................... 1 / 1
+
+Részösszeg (10): 4 / 4
+
+============================================================
+11) nyertes.txt létrehozása
+------------------------------------------------------------
+Létrehozta nyertes.txt-t csak ha volt nyertes .......... 1 / 1
+Benne van a vizsgált forduló sorszáma .................. 1 / 1
+Benne van a nyertes tipp értéke ........................ 1 / 1
+Benne van a nyertes játékos neve ....................... 1 / 1
+Az állomány szerkezete minta szerinti .................. 1 / 1
+
+Részösszeg (11): 5 / 5
+
+Összpontszám: 39 / 40

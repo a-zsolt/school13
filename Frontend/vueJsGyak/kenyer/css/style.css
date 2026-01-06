@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+h1, h2, h3 {
+    color: #0a32cb;
+}
+
+section {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input, select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+button, input[type="submit"] {
+    padding: 10px;
+    background-color: #0a32cb;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.starter-card {
+    border: 2px solid #627bc9;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+}
+
+.feedings {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #babecb;
+    border-radius: 4px;
+}
+
+hr {
+    border: none;
+    border-top: 2px solid #8c97c2;
+    margin: 20px 0;
+}

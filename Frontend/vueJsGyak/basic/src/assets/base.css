@@ -1,0 +1,13 @@
+:root { font: 16px/1.5 system-ui, sans-serif; }
+.container { max-width: 720px; margin: 2rem auto; padding: 0 1rem; }
+.toolbar { display: flex; gap: .5rem; align-items: center; margin: 1rem 0; }
+.filters button.active { font-weight: 700; }
+.task { display: grid; grid-template-columns: auto 1fr auto auto; gap: .5rem; align-items: center; padding: .5rem 0; border-bottom: 1px solid #eee; }
+.task.done .title { text-decoration: line-through; opacity: .7; }
+.badge { padding: .15rem .5rem; border-radius: .5rem; font-size: .75rem; background: #eee; }
+.badge.high { background: #fee; }
+.badge.med { background: #ffe; }
+.badge.low { background: #eef; }
+button { cursor: pointer; }
+input[type="text"], select { padding: .4rem .5rem; }
+.form-row { display:flex; gap:.5rem; }
