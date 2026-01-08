@@ -9,14 +9,14 @@ export default {
 <template>
   <div class="card">
     <div class="card-body">
-      <div class="row">
-        <div class="col-1 flex align-content-center">
+      <div class="row align-items-center">
+        <div class="col-auto">
           <input type="checkbox" class="form-check-input" :checked="task.isDone" @click="$emit('toggleTask')">
         </div>
-        <div class="col-8">
-          <p class="card-text">{{ task.text }}</p>
+        <div class="col">
+          <p class="card-text" :class="{done: task.isDone}">{{ task.text }}</p>
         </div>
-        <div class="col-2 flex align-content-center">
+        <div class="col-auto">
           <button class="btn btn-primary" @click="$emit('deleteTask')">Törés</button>
         </div>
       </div>
@@ -25,5 +25,7 @@ export default {
 </template>
 
 <style scoped>
-
+.done{
+  text-decoration: line-through;
+}
 </style>

@@ -55,7 +55,7 @@ export default {
       this.tasks = this.tasks.filter(task => task.id !== id);
     },
     toggleTask(id) {
-      const task = this.tasks.findIndex(task => task.id === id);
+      const task = this.tasks.find(task => task.id === id);
       if (task) task.done = !task.done;
     }
   }
