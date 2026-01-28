@@ -43,4 +43,53 @@ class VehicleController extends Controller
 
         return view('vehicles.show', ['vehicle' => $vehicle]);
     }
+
+    private $types = ['electric-sport', 'jdm-super', 'track-sport', 'hyper-hybrid'];
+    public function create() {
+
+
+        return view('vehicles.create', ['types' => $this->types]);
+    }
+
+    public function store(Request $request) {
+        //TODO: validalas
+
+        Vehicle::create($request->all());
+
+        return redirect()->route('vehicles.index');
+    }
+
+    public function destroy($id) {
+        $vehicle = Vehicle::findOrFail($id);
+        $vehicle->delete();
+        return redirect()->route('vehicles.index');
+    }
+
+    public function edit($id) {
+        $vehicle = Vehicle::findOrFail($id);
+        return view('vehicles.edit', ['vehicle' => $vehicle, 'types' => $this->types]);
+    }
+
+    public function update(Request $request, $id) {
+        $vehicle = Vehicle::findOrFail($id);
+        $vehicle->update($request->all());
+
+        return redirect()->route('vehicles.show', ['id' => $vehicle->id]);
+    }
+
+    public function reserve($id) {
+        $vehicle = Vehicle::findOrFail($id);
+        $vehicle->is_available = true;
+        $vehicle->save();
+
+        return redirect()->route('vehicles.index');
+    }
+
+    public function leave($id) {
+        $vehicle = Vehicle::findOrFail($id);
+        $vehicle->is_available = false;
+        $vehicle->save();
+
+        return redirect()->route('vehicles.index');
+    }
 }

@@ -103,5 +103,11 @@
                 &larr; Vissza a listához
             </a>
         </p>
+        <a class="button is-primary" href="{{ route('vehicle.edit', ['id' => $vehicle->id]) }}">Szerkesztés</a>
+        <form method="POST" action="{{ route('vehicle.destroy', ['id' => $vehicle->id]) }}">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="button is-danger">Törlés</button>
+        </form>
     </div>
 @endsection

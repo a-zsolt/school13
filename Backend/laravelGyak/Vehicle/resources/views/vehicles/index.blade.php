@@ -49,6 +49,7 @@
                 <th>Napi díj</th>
                 <th>Férőhely</th>
                 <th>Elérhető</th>
+                <th>Műveletek</th>
             </tr>
         </thead>
         <tbody>
@@ -61,6 +62,19 @@
                     <td>{{ $vehicle->daily_price }} $/nap</td>
                     <td>{{ $vehicle->seats }}</td>
                     <td>@if($vehicle->is_available) <span class="tag is-success">Igen</span> @else <span class="tag is-danger">Nem</span> @endif</td>
+                    <td>
+                        @if($vehicle->is_available))
+                            <form method="POST" action="{{ route('vehicle.reserve', ['id' => $vehicle->id]) }}">
+                                @csrf
+                                <button type="submit">Foglalás</button>
+                            </form>
+                        @else
+                            <form method="POST" action="{{ route('vehicle.leave', ['id' => $vehicle->id]) }}">
+                                @csrf
+                                <button type="submit">Kiadás</button>
+                            </form>
+                        @endif
+                    </td>
                 </tr>
             @empty
                 <td colspan="5">

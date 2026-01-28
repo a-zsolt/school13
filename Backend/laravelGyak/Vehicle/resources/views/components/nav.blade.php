@@ -5,4 +5,13 @@
             <h1 class="is-size-4">Járműkölcsönző</h1>
         </a>
     </div>
+    <div class="navbar-end">
+        <div class="navbar-item">
+            <div class="buttons">
+                <a href="{{ route('vehicles.create') }}" class="button is-primary">
+                    <strong>Új autó hozzáadása</strong>
+                </a>
+            </div>
+        </div>
+    </div>
 </nav>
