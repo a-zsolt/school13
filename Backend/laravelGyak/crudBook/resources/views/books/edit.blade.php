@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Mentés</button>
                     </div>
                 </form>
             </div>

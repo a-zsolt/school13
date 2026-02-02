@@ -30,9 +30,11 @@
                     </td>
                 </tr>
             @empty
-                <div class="alert alert-info" role="alert">
-                    Nincsen megjeleníthető könyv!
-                </div>
+                <td colspan="5">
+                    <div class="alert alert-info" role="alert">
+                        Nincsen megjeleníthető könyv!
+                    </div>
+                </td>
             @endforelse
 
         </tbody>
