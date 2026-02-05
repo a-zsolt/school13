@@ -13,34 +13,49 @@
                     <div class="row">
                         <div class="col-6">
                             <label for="title" class="form-label">Könyv Címe</label>
-                            <input type="text" class="form-control" value="{{ $book->title }}" name="title" id="title">
+                            <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title" value="{{ old('title', $book->title) }}">
+                            @foreach($errors->get('title') as $error)
+                                <div class="invalid-feedback">
+                                    {{ $error }}
+                                </div>
+                            @endforeach
                         </div>
 
                         <div class="col-6">
                             <label for="author" class="form-label">Szerző</label>
-                            <input type="text" class="form-control" value="{{ $book->author }}" name="author" id="author">
+                            <input type="text" class="form-control @error('author') is-invalid @enderror" value="{{ old('author', $book->author) }}" name="author" id="author">
+                            @foreach($errors->get('author') as $error)
+                                <div class="invalid-feedback">
+                                    {{ $error }}
+                                </div>
+                            @endforeach
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-2">
-                            <label for="id" class="form-label">Id</label>
-                            <input type="number" class="form-control" value="{{ $book->id }}" name="id" id="id">
-                        </div>
-
                         <div class="col-5">
                             <label for="published_year" class="form-label">Megjelenés éve</label>
-                            <input type="number" class="form-control" value="{{ $book->published_year }}" name="published_year" id="published_year">
+                            <input type="number" class="form-control @error('published_year') is-invalid @enderror" value="{{ old('published_year', $book->published_year) }}" name="published_year" id="published_year">
+                            @foreach($errors->get('published_year') as $error)
+                                <div class="invalid-feedback">
+                                    {{ $error }}
+                                </div>
+                            @endforeach
                         </div>
 
                         <div class="col-5">
                             <label for="price" class="form-label">Ár</label>
-                            <input type="number" class="form-control" value="{{ $book->price }}" name="price" id="price">
+                            <input type="number" class="form-control @error('price') is-invalid @enderror" value="{{ old('price', $book->price) }}" name="price" id="price">
+                            @foreach($errors->get('price') as $error)
+                                <div class="invalid-feedback">
+                                    {{ $error }}
+                                </div>
+                            @endforeach
                         </div>
                     </div>
 
                     <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary">Mentés</button>
+                        <button type="submit" class="btn btn-primary">Létrehozás</button>
                     </div>
                 </form>
             </div>

@@ -1,6 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
+    @if(session('status'))
+        <div class="alert alert-primary text-center" role="alert" id="status-alert">
+            {{ session('status') }}
+        </div>
+        <script>
+            setTimeout(function() {
+                let alert = document.getElementById('status-alert');
+                if (alert) {
+                    alert.style.transition = "opacity 0.5s ease";
+                    alert.style.opacity = "0";
+                    setTimeout(function() { alert.remove(); }, 500);
+                }
+            }, 5000);
+        </script>
+    @endif
     <table class="table table-hover">
         <thead>
             <tr>
@@ -36,7 +51,6 @@
                     </div>
                 </td>
             @endforelse
-
         </tbody>
     </table>
 @endsection
