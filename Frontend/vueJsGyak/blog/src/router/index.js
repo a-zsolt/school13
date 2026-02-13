@@ -5,6 +5,24 @@ import PostsView from "@/views/PostsView.vue";
 import NotFoundView from "@/views/NotFoundView.vue";
 import PostDetailView from "@/views/PostDetailView.vue";
 
+const posts = [
+    {
+        id: 1,
+        title: 'Vue alapok',
+        content: 'A vue jó'
+    },
+    {
+        id: 2,
+        title: 'Vue router',
+        content: 'A vue jó'
+    },
+    {
+        id: 3,
+        title: 'Dolgozat',
+        content: 'sadasdaddadad saodp jsadasopd asposad sadpasjd sapod jasdopaa awpoie asadas asopd sa ss'
+    },
+];
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [{
@@ -29,7 +47,8 @@ const router = createRouter({
       component: PostsView,
       meta: {
         title: 'Blog'
-      }
+      },
+        props: {posts}
     },
     {
       path: '/posts/:id',
@@ -37,7 +56,13 @@ const router = createRouter({
       component: PostDetailView,
       meta: {
         title: 'Post Részletek'
-      }
+      },
+        props: (route) => {
+            const id = Number(route.params.id);
+            return {
+                post: posts.find(p => p.id === id)
+            }
+        }
     },
     {
       path: '/:pathMatch(.*)*',

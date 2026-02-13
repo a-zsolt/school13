@@ -4,27 +4,7 @@ import {RouterLink} from "vue-router";
 export default {
   name: "PostsView",
   components: { RouterLink },
-  data() {
-    return {
-      posts: [
-        {
-          id: 1,
-          title: 'Vue alapok',
-          content: 'A vue jó'
-        },
-        {
-          id: 2,
-          title: 'Vue router',
-          content: 'I love oracle'
-        },
-        {
-          id: 1,
-          title: 'Dolgozat',
-          content: 'Big yahu pls save my grades'
-        },
-      ],
-    }
-  }
+  props: {posts: Array, required: true},
 }
 </script>
 
