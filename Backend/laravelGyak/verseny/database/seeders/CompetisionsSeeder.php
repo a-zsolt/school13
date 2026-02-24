@@ -44,14 +44,14 @@ class CompetisionsSeeder extends Seeder
         //SUBMISSIONS
 
         //KC
-        Submission::create(['team_id' => $t1->id, 'challenge_id' => $ch1->id, 'points' => 8]);
-        Submission::create(['team_id' => $t1->id, 'challenge_id' => $ch2->id, 'points' => 12]);
+        Submission::create(['team_id' => $t1->id, 'challange_id' => $ch1->id, 'points' => 8]);
+        Submission::create(['team_id' => $t1->id, 'challange_id' => $ch2->id, 'points' => 12]);
 
         //PR
-        Submission::create(['team_id' => $t2->id, 'challenge_id' => $ch1->id, 'points' => 10]);
-        Submission::create(['team_id' => $t2->id, 'challenge_id' => $ch3->id, 'points' => 18]);
+        Submission::create(['team_id' => $t2->id, 'challange_id' => $ch1->id, 'points' => 10]);
+        Submission::create(['team_id' => $t2->id, 'challange_id' => $ch3->id, 'points' => 18]);
 
         //ZT
-        Submission::create(['team_id' => $t3->id, 'challenge_id' => $ch2->id, 'points' => 9]);
+        Submission::create(['team_id' => $t3->id, 'challange_id' => $ch2->id, 'points' => 9]);
     }
 }

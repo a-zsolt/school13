@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Team extends Model
 {
+    protected $fillable = [
+        'name'
+    ];
+
     public function students(): HasMany
     {
         return $this->hasMany(Student::class);

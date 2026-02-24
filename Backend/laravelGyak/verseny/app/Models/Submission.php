@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Submission extends Model
 {
+    protected $fillable = [
+        'team_id',
+        'challange_id',
+        'points',
+    ];
+
     public function team(): BelongsTo
     {
         return $this->belongsTo(Team::class);

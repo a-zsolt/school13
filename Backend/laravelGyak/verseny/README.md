@@ -1,59 +1,203 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ORM (Eloquent) – Lekérdezéses gyakorló feladatok (a seedelt „Csapatverseny" adatokra)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Feltételezés:** a modellek és a kapcsolatok (Team–Student, Team–Submission, Challenge–Submission) már készen vannak.
 
-## About Laravel
+**Szabály:** minden feladatot Eloquent ORM-mel oldj meg (nincs kézzel írt SQL, nincs Query Builder join kötelező jelleggel).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**A megoldás formája lehet:** Tinker parancs, vagy Controller metódusban egy lekérdezés.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**Leadás:** tinker parancsok egy txt-ben vagy controller php fájl, ami tartalmazza az összes lekérést.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 1) Csapatok névsora ABC-ben
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+Kérd le az összes csapatot név szerint rendezve.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**Elvárt kimenet:** csapatnév lista.
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 2) Csapatok + diákok száma
 
-### Premium Partners
+Listázd a csapatokat és mindegyiknél add vissza, hány diák van benne.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+**Elvárás:** withCount() használata.
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 3) Csapatok, ahol legalább 3 diák van
 
-## Code of Conduct
+Szűrd le azokat a csapatokat, ahol a diákok száma >= 3.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**Elvárás:** relationship alapú szűrés (has()/whereHas()).
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 4) Csapatok + beadások száma
 
-## License
+Listázd a csapatokat és mindegyikhez add vissza, hány beadása van.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Elvárás:** withCount('submissions').
+
+---
+
+## 5) „Scoreboard" – összpont csapatonként
+
+Készíts listát csapatonként:
+- csapat neve
+- beadások száma
+- összpont (points összege)
+
+**Elvárás:** ORM-mel (javasolt: withSum() vagy with('submissions') + sum()).
+
+---
+
+## 6) Top 2 csapat összpont alapján
+
+A scoreboardból add vissza a legjobb 2 csapatot.
+
+**Elvárás:** rendezés összeg alapján.
+
+---
+
+## 7) Feladatok + beadások száma
+
+Listázd a feladatokat és mindegyiknél add vissza a beadások számát.
+
+**Elvárás:** withCount('submissions').
+
+---
+
+## 8) Feladatok, amire még nincs beadás
+
+Szűrd le azokat a feladatokat, amelyekhez 0 beadás tartozik.
+
+**Elvárás:** doesntHave('submissions').
+
+---
+
+## 9) Legnagyobb pontszámú beadás
+
+Keresd meg a beadást, ahol a pont a legnagyobb, és add vissza:
+- csapat neve
+- feladat címe
+- pont
+
+**Elvárás:** eager loading (with(['team','challenge'])).
+
+---
+
+## 10) Egy adott csapat beadásai (kapcsolt adatokkal)
+
+Egy adott csapat (pl. „Kék Cápák") beadásait listázd úgy, hogy látszódjon:
+- feladat címe
+- pont
+
+**Elvárás:** csapat keresése név alapján, majd relationship bejárás.
+
+---
+
+## 11) Csapatok, akik adtak be megoldást egy adott feladatra
+
+Pl. „ORM kapcsolatok alapjai" feladatra kik adtak be?
+
+**Elvárás:** whereHas() a submissions-on belül challenge szűréssel.
+
+---
+
+## 12) Csapatok, akik NEM adtak be egy adott feladatra
+
+Ugyanaz a feladat, de a „nem adtak be" lista.
+
+**Elvárás:** whereDoesntHave().
+
+---
+
+## 13) Feladatonként átlagpont
+
+Számold ki feladatonként a beadások átlagpontját.
+
+**Elvárás:** Eloquent aggregáció (javasolt: withAvg() vagy submissions()->avg('points')).
+
+---
+
+## 14) Csapatonként átlagpont (beadásokra)
+
+Számold ki csapatonként a beadások átlagpontját.
+
+**Elvárás:** Eloquent aggregáció.
+
+---
+
+## 15) Csapatok, ahol van 0 pontos beadás
+
+Listázd azokat a csapatokat, ahol legalább egy beadás pontszáma 0.
+
+**Elvárás:** whereHas('submissions', fn($q)=>...).
+
+---
+
+## 16) Feladatok, ahol volt max pontos beadás
+
+Listázd azokat a feladatokat, ahol létezik olyan beadás, ami elérte a feladat max_points értékét.
+
+**Elvárás:** relationship + feltétel. (Tipp: whereColumn('submissions.points', 'challenges.max_points') jellegű gondolkodás; ORM-mel megoldva.)
+
+---
+
+## 17) „Csapat–Feladat mátrix": ki mennyit szerzett feladatonként
+
+Készíts olyan lekérdezést, ami beadásokat ad vissza így:
+- csapatnév
+- feladatcím
+- pont
+
+Majd rendezd:
+- csapatnév szerint
+- feladatcím szerint
+
+**Elvárás:** eager loading + rendezés.
+
+---
+
+## 18) Legutolsó 3 beadás (kapcsolt adatokkal)
+
+Kérd le a legutóbbi 3 beadást, és add vissza:
+- csapatnév
+- feladatcím
+- pont
+
+**Elvárás:** latest() + take(3) + with().
+
+---
+
+## 19) Csapat részletek: diákok + beadások egy lekérdezéssel
+
+Egy adott csapatnál töltsd be egyszerre:
+- diákokat
+- beadásokat és azok feladatait
+
+**Elvárás:** Team::with(['students','submissions.challenge']).
+
+---
+
+## 20) N+1 elkerülés: beadások listája optimálisan
+
+Készíts beadáslistát, ami táblázatban megjeleníthető (csapat + feladat + pont), úgy hogy:
+- a lekérdezés eager loading-gal történik
+- a view-ban nincs újabb adatbázis-lekérdezés
+
+**Elvárás:** with(['team','challenge']).
+
+---
+
+## Opcionális „+" feladatok
+
+### 21) Csapatok rangsora: döntetlen esetén a beadások száma döntsön
+
+Csapatok rangsora: döntetlen esetén a beadások száma döntsön (több beadás előrébb).
+
+### 22) „Tiszta teljesítmény": csapatonként csak a legjobb beadás számítson feladatonként
+
+„Tiszta teljesítmény": csapatonként csak a legjobb beadás számítson feladatonként (ha többször adhatnak be).

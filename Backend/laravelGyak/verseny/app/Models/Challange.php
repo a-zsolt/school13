@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Challange extends Model
 {
+    protected $fillable = [
+        'title',
+        'max_points'
+    ];
+
     public function submissions(): HasMany
     {
         return $this->hasMany(Submission::class);
